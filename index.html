@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interpretação de Cenários | MD 2036</title>
+
+  <meta name="description" content="Ferramenta pedagógica para interpretar cenários, consequências e medidas estratégicas da Pesquisa MD 2036.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Interpretação de Cenários">
+  <meta property="og:title" content="Interpretação de Cenários | MD 2036">
+  <meta property="og:description" content="Transforma cenários em consequências estratégicas e medidas de resposta.">
+  <meta property="og:url" content="https://cenariosprospectivos.github.io/Interpretacao/">
+  <meta property="og:image" content="https://cenariosprospectivos.github.io/Interpretacao/assets/share/interpretacao-share.jpg">
+  <meta property="og:image:secure_url" content="https://cenariosprospectivos.github.io/Interpretacao/assets/share/interpretacao-share.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="kicker">Interpretação de cenários</p>
+      <h1>Consequências e Medidas</h1>
+      <p class="lead">
+        Esta etapa transforma cenários em consequências estratégicas e medidas de resposta.
+      </p>
+    </div>
+    <nav class="hero-actions">
+      <a href="https://cenariosprospectivos.github.io/Cenarios/" target="_blank" rel="noopener">Geração de Cenários</a>
+      <a href="https://cenariosprospectivos.github.io/Delphi/resultados.html" target="_blank" rel="noopener">Delphi</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="explain-grid">
+      <article class="explain-card">
+        <strong>1. O que é interpretar?</strong>
+        <p>É transformar uma combinação de eventos em efeitos práticos sobre missão, capacidades e coordenação institucional.</p>
+      </article>
+      <article class="explain-card">
+        <strong>2. O que é consequência?</strong>
+        <p>É aquilo que o cenário pode provocar sobre soberania, defesa, logística, infraestrutura, governança ou diplomacia.</p>
+      </article>
+      <article class="explain-card">
+        <strong>3. O que é medida?</strong>
+        <p>É uma ação para se preparar, reduzir vulnerabilidades ou aproveitar oportunidades antes que o cenário se consolide.</p>
+      </article>
+    </section>
+
+    <section class="metric-grid">
+      <article class="metric-card">
+        <span>Cenários interpretados</span>
+        <strong id="metricCenarios">0</strong>
+        <small>Cenários salvos com pelo menos uma consequência cadastrada.</small>
+      </article>
+      <article class="metric-card">
+        <span>Consequências</span>
+        <strong id="metricConsequencias">0</strong>
+        <small>Efeitos estratégicos associados aos cenários.</small>
+      </article>
+      <article class="metric-card priority-card">
+        <span>Medidas</span>
+        <strong id="metricMedidas">0</strong>
+        <small>Respostas pré-ativas e pró-ativas vinculadas às consequências.</small>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <div>
+          <span class="section-number">01</span>
+          <h2>Seleção do cenário</h2>
+          <p class="section-lead">
+            Escolha um cenário salvo para ver sua consequência principal, medidas associadas e síntese interpretativa.
+          </p>
+        </div>
+        <div class="button-row">
+          <button id="reloadBtn" type="button" class="ghost-btn">Recarregar</button>
+          <button id="exportJsonBtn" type="button" class="ghost-btn">Exportar JSON</button>
+          <button id="exportCsvBtn" type="button" class="ghost-btn">Exportar CSV</button>
+        </div>
+      </div>
+
+      <div id="statusBox" class="status">Carregando dados...</div>
+
+      <label class="select-label">
+        Cenário
+        <select id="scenarioSelect"></select>
+      </label>
+
+      <article class="scenario-card" id="scenarioCard">
+        <span class="badge badge-any">Cenário</span>
+        <h3 id="scenarioTitle">Carregando...</h3>
+        <p id="scenarioDescription"></p>
+        <div id="scenarioCombination" class="combination-list"></div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <div>
+          <span class="section-number">02</span>
+          <h2>Consequências do cenário</h2>
+          <p class="section-lead">
+            Uma consequência descreve o que o cenário pode provocar sobre a missão, capacidades, presença estatal ou coordenação institucional.
+          </p>
+        </div>
+      </div>
+
+      <div class="content-grid" id="consequenceGrid"></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <div>
+          <span class="section-number">03</span>
+          <h2>Medidas de resposta</h2>
+          <p class="section-lead">
+            Uma medida indica como o Estado pode se preparar, reduzir vulnerabilidades ou aproveitar oportunidades antes que o cenário se consolide.
+          </p>
+        </div>
+      </div>
+
+      <div class="content-grid" id="measureGrid"></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <div>
+          <span class="section-number">04</span>
+          <h2>Síntese interpretativa</h2>
+          <p class="section-lead">
+            Interpretar cenários não é prever o futuro, mas organizar respostas possíveis diante de combinações plausíveis de eventos.
+          </p>
+        </div>
+      </div>
+
+      <article class="synthesis-card">
+        <p id="synthesisText">Selecione um cenário para gerar a síntese.</p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <div>
+          <span class="section-number">05</span>
+          <h2>Visão consolidada</h2>
+          <p class="section-lead">
+            Tabela de apoio para comparar cenários, consequências e medidas.
+          </p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Cenário</th>
+              <th>Consequência</th>
+              <th>Impacto</th>
+              <th>Dimensão</th>
+              <th>Medida</th>
+              <th>Tipo</th>
+              <th>Prioridade</th>
+            </tr>
+          </thead>
+          <tbody id="consolidatedTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Ferramenta conectada ao Supabase da Pesquisa MD 2036. Os exemplos pré-preenchidos apoiam a narrativa do storytelling do curso.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
